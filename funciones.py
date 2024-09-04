@@ -43,7 +43,7 @@ def ing_est():
 
     while nombre == None:
            try:
-               nombre = input('Ingresa el nombre\n')
+               nombre = input('Ingresa el nombre\n').lower()
                if nombre == '':
                    print('Porfavor ingrese un nombre')
                    nombre = None
@@ -71,7 +71,7 @@ def ing_est():
             rut = None
     while carrera == None:
         try:
-            carrera = input("Ingrese la carrera del Estudiante\n")
+            carrera = input("Ingrese la carrera del Estudiante\n").lower()
             if carrera == '':
                 print('Por favor ingrese una carrera')
                 carrera = None
@@ -96,14 +96,16 @@ def ing_est():
     p['carrera'] = carrera
     p['año_ingreso'] = ano_ingreso
     InsertDatos(p, 1)
-
-    continuar = input('a.-Continuar ingresando estudiantes\n'
-                      'b.-salir')
-    if continuar == 'a':
-       ing_est()
-    if continuar == 'b':
-        print('Menu')
-
+    continuar = None
+    while continuar == None:
+        continuar = input('1.-Continuar ingresando estudiantes\n'
+                          '2.-salir\n')
+        if continuar == 'a':
+            ing_curso()
+        if continuar == 'b':
+            print('Menu')
+        else:
+            continuar = None
 def verificar_rut(rut):
     rut = str(rut)
     ver_1 = False
@@ -127,7 +129,7 @@ def ing_curso():
     p = {}
     while curso == None:
         try:
-            curso = input('Ingresa el nombre del curso\n')
+            curso = input('Ingresa el nombre del curso\n').lower()
             if curso == '':
                 print('Porfavor ingrese un nombre')
                 curso = None
@@ -136,7 +138,7 @@ def ing_curso():
             curso = None
     while codigo_curso == None:
         try:
-            codigo_curso = input('Ingrese el codigo del curso\n')
+            codigo_curso = input('Ingrese el codigo del curso\n').lower()
             if codigo_curso == '':
                 print('Porfavor ingrese el codigo del curso')
                 codigo_curso = None
@@ -175,12 +177,16 @@ def ing_curso():
     if len(str(nota)):
         p['nota'] = nota
     InsertDatos(p, 2)
-    continuar = input('a.-Continuar ingresando estudiantes\n'
-                      'b.-salir\n')
-    if continuar == 'a':
-        ing_curso()
-    if continuar == 'b':
-        print('Menu')
+    continuar = None
+    while continuar == None:
+        continuar = input('1.-Continuar ingresando estudiantes\n'
+                          '2.-salir\n')
+        if continuar == 'a':
+            ing_curso()
+        if continuar == 'b':
+            print('Menu')
+        else:
+            continuar = None
 
 
 def mostrar_datos():
