@@ -32,7 +32,14 @@ def menu_ingresar():
         print('error ingrese denuevo la eleccion')
         seleccion = menu_ingresar()
     return seleccion
-
+def verificar_rut(rut):
+    rut = str(rut)
+    respuesta = False
+    if rut[8] == '-' and len(rut) == 10:
+        respuesta = True
+    else:
+        respuesta = False
+    return respuesta
 def ing_est():
     p = {}
     nombre = None
@@ -60,14 +67,17 @@ def ing_est():
                   edad = None
     while rut == None:
         try:
-            rut = input('Ingrese el rut\n')
+            rut = input('Ingresar rut del estudiante\n')
             if rut == '':
-                print('porfavor ingrese un rut')
+                print('por favor ingrese un rut')
                 rut = None
-            if len(rut) < 8:
-                print('por favor ingrese un rut valido')
-                rut = None
+            else:
+                respuesta = verificar_rut(rut)
+                if respuesta == False:
+                    print('Porfavor ingrese un rut valido')
+                    rut = None
         except:
+            print('Porfavor ingrese un rut valido')
             rut = None
     while carrera == None:
         try:
@@ -106,20 +116,7 @@ def ing_est():
             print('Menu')
         else:
             continuar = None
-def verificar_rut(rut):
-    rut = str(rut)
-    ver_1 = False
-    ver_2 = False
-    respuesta = False
-    if rut[8] == '-':
-        ver_1 = True
-    if len(rut) == 10:
-        ver_2 = True
-    if ver_1 == True and ver_2 == True:
-        respuesta = True
-    else:
-        respuesta = False
-    return respuesta
+
 
 def ing_curso():
     curso = None
