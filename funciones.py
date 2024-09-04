@@ -32,72 +32,162 @@ def menu_ingresar():
         print('error ingrese denuevo la eleccion')
         seleccion = menu_ingresar()
     return seleccion
-def Ingresa(seleccion):
-    if seleccion == 1:
-        while True:
-            # ingresa datos
-            nombre = input('Ingresa el nombre\n')
-            try:
-                edad = int(input('Ingresa la edad\n'))
-            except:
-                print('No ingresó un número, se asumirá en cero')
-                edad = ''
-            rut = input('Ingrese el rut\n')
-            carrera = input("Ingrese la carrera del Estudiante\n")
-            try:
-                ano_ingreso = int(input('Ingrese el año de Ingreso\n'))
-            except:  # en caso de ingresar un dato no numérico
-                print('No ingresó un número, se asumirá en cero')
-                ano_ingreso = ''
-            p = {}
-            if len(nombre) > 0:
-                p['nombre'] = nombre
-            if len(str(edad)) > 0:
-                p['edad'] = edad
-            if len(rut) > 0:
-                p['rut'] = rut
-            if len(carrera) > 0:
-                p['carrera'] = carrera
-            if len(str(ano_ingreso)) > 0 or len(str(ano_ingreso)) < 4 :
-                p['año_ingreso'] = ano_ingreso
-            InsertDatos(p,1)
-            opcion = input('si para continuar, no para finalizar\n')
-            while opcion != 'si' and opcion != 'no':
-                print('Error')
-                opcion = input('si para continuar, no para finalizar\n')
-            if opcion == 'no':
-                break
-    if seleccion == 2:
-        while True:
-            curso = input('Ingresa el nombre del curso\n')
-            try:
-                codigo_curso = int(input('Ingresa el codigo del curso\n'))
-            except:
-                print('No ingresó un número, se asumirá en cero')
-                codigo_curso = ''
-            rut_estudiante = input('Ingrese el rut del estudiante\n')
-            try:
-                nota = input("Ingrese la nota final del estudiante\n")
-            except:
-                print('No ingresó un número, se asumirá en cero')
-                nota = ''
 
-            p = {}
-            if len(curso) > 0:
-                p['curso'] = curso
-            if len(str(codigo_curso)) > 0:
-                p['codigo_curso'] = codigo_curso
-            if len(rut_estudiante) > 0:
-                p['rut_estudiante'] = rut_estudiante
-            if len(str(nota)):
-                p['nota'] = nota
-            InsertDatos(p,2)
-            opcion = input('si para continuar, no para finalizar\n')
-            while opcion != 'si' and opcion != 'no':
-                print('Error')
-                opcion = input('si para continuar, no para finalizar\n')
-            if opcion == 'no':
-                break
+def ing_est():
+    p = {}
+    nombre = None
+    edad = None
+    rut = None
+    carrera = None
+    ano_ingreso = None
+
+    while nombre == None:
+           try:
+               nombre = input('Ingresa el nombre\n')
+               if nombre == '':
+                   print('Porfavor ingrese un nombre')
+                   nombre = None
+           except:
+               print('Error ingrese el nombre denuevo')
+               nombre = None
+    while edad == None:
+           try:
+                edad = int(input('Ingresa la edad\n'))
+                if edad == '':
+                    print('Porfavor ingrese una edad')
+                    edad = None
+           except:
+                  edad = None
+    while rut == None:
+        try:
+            rut = input('Ingrese el rut\n')
+            if rut == '':
+                print('porfavor ingrese un rut')
+                rut = None
+            if len(rut) < 8:
+                print('por favor ingrese un rut valido')
+                rut = None
+        except:
+            rut = None
+    while carrera == None:
+        try:
+            carrera = input("Ingrese la carrera del Estudiante\n")
+            if carrera == '':
+                print('Por favor ingrese una carrera')
+                carrera = None
+        except:
+            print('error al ingresar carrera')
+            carrera = None
+    while ano_ingreso == None:
+        try:
+            ano_ingreso = int(input('Ingrese el año de Ingreso\n'))
+
+            if len(str(ano_ingreso)) > 0 and len(str(ano_ingreso)) < 4 :
+                print('Error por favor ingrese un año')
+                ano_ingreso = None
+
+        except:
+            print('Error por favor ingrese un año')
+            ano_ingreso = None
+
+    p['nombre'] = nombre
+    p['edad'] = edad
+    p['rut'] = rut
+    p['carrera'] = carrera
+    p['año_ingreso'] = ano_ingreso
+    InsertDatos(p, 1)
+
+    continuar = input('a.-Continuar ingresando estudiantes\n'
+                      'b.-salir')
+    if continuar == 'a':
+       ing_est()
+    if continuar == 'b':
+        print('Menu')
+
+def verificar_rut(rut):
+    rut = str(rut)
+    ver_1 = False
+    ver_2 = False
+    respuesta = False
+    if rut[8] == '-':
+        ver_1 = True
+    if len(rut) == 10:
+        ver_2 = True
+    if ver_1 == True and ver_2 == True:
+        respuesta = True
+    else:
+        respuesta = False
+    return respuesta
+
+def ing_curso():
+    curso = None
+    codigo_curso = None
+    rut = None
+    nota = None
+    p = {}
+    while curso == None:
+        try:
+            curso = input('Ingresa el nombre del curso\n')
+            if curso == '':
+                print('Porfavor ingrese un nombre')
+                curso = None
+        except:
+            print('Error ingrese el nombre denuevo')
+            curso = None
+    while codigo_curso == None:
+        try:
+            codigo_curso = input('Ingrese el codigo del curso\n')
+            if codigo_curso == '':
+                print('Porfavor ingrese el codigo del curso')
+                codigo_curso = None
+        except:
+            print('Porfavor ingrese el codigo denuevo')
+            codigo_curso = None
+    while rut == None:
+        try:
+            rut = input('Ingresar rut del estudiante\n')
+            if rut == '':
+                print('por favor ingrese un rut')
+                rut = None
+            else:
+                respuesta = verificar_rut(rut)
+                if respuesta == False:
+                    print('Porfavor ingrese un rut valido')
+                    rut = None
+        except:
+            print('Porfavor ingrese un rut valido')
+            rut = None
+    while nota == None:
+        try:
+            nota = int(input("Ingrese la nota final del estudiante\n"))
+            if nota == '':
+                print('Por favor ingrese una nota')
+                nota = None
+        except:
+            print('error Por favor ingrese la nota denuevo')
+            nota = None
+    if len(curso) > 0:
+        p['curso'] = curso
+    if len(str(codigo_curso)) > 0:
+        p['codigo_curso'] = codigo_curso
+    if len(rut) > 0:
+        p['rut'] = rut
+    if len(str(nota)):
+        p['nota'] = nota
+    InsertDatos(p, 2)
+    continuar = input('a.-Continuar ingresando estudiantes\n'
+                      'b.-salir\n')
+    if continuar == 'a':
+        ing_curso()
+    if continuar == 'b':
+        print('Menu')
+
+
+def mostrar_datos():
+    seleccion = int(input('Mostrar Datos\n'
+                          '1.-datos estudiantes\n'
+                          '2.-datos cursos\n'))
+    return seleccion
 '''
 def Muestra_datos_rut():
     rut = input('Ingresa rut\n')
