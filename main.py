@@ -13,8 +13,5 @@ def Main():
 
         if menu == 2:
             seleccion_mostrar = mostrar_datos()
-            if seleccion_mostrar == 1:
-                MostrarDatos(1)
-            if seleccion_mostrar == 2:
-                MostrarDatos(2)
+
 Main()

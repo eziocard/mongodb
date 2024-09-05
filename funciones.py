@@ -42,63 +42,63 @@ def verificar_rut(rut):
     return respuesta
 def ing_est():
     p = {}
-    nombre = None
-    edad = None
-    rut = None
-    carrera = None
-    ano_ingreso = None
+    nombre = False
+    edad = False
+    rut = False
+    carrera = False
+    ano_ingreso = False
 
-    while nombre == None:
+    while nombre == False:
            try:
                nombre = input('Ingresa el nombre\n').lower()
                if nombre == '':
                    print('Porfavor ingrese un nombre')
-                   nombre = None
+                   nombre = False
            except:
                print('Error ingrese el nombre denuevo')
-               nombre = None
-    while edad == None:
+               nombre = False
+    while edad == False:
            try:
                 edad = int(input('Ingresa la edad\n'))
                 if edad == '':
                     print('Porfavor ingrese una edad')
-                    edad = None
+                    edad = False
            except:
-                  edad = None
-    while rut == None:
+                  edad = False
+    while rut == False:
         try:
             rut = input('Ingresar rut del estudiante\n')
             if rut == '':
                 print('por favor ingrese un rut')
-                rut = None
+                rut = False
             else:
                 respuesta = verificar_rut(rut)
                 if respuesta == False:
                     print('Porfavor ingrese un rut valido')
-                    rut = None
+                    rut = False
         except:
             print('Porfavor ingrese un rut valido')
-            rut = None
-    while carrera == None:
+            rut = False
+    while carrera == False:
         try:
             carrera = input("Ingrese la carrera del Estudiante\n").lower()
             if carrera == '':
                 print('Por favor ingrese una carrera')
-                carrera = None
+                carrera = False
         except:
             print('error al ingresar carrera')
-            carrera = None
-    while ano_ingreso == None:
+            carrera = False
+    while ano_ingreso == False:
         try:
             ano_ingreso = int(input('Ingrese el año de Ingreso\n'))
 
             if len(str(ano_ingreso)) > 0 and len(str(ano_ingreso)) < 4 :
                 print('Error por favor ingrese un año')
-                ano_ingreso = None
+                ano_ingreso = False
 
         except:
             print('Error por favor ingrese un año')
-            ano_ingreso = None
+            ano_ingreso = False
 
     p['nombre'] = nombre
     p['edad'] = edad
@@ -106,8 +106,8 @@ def ing_est():
     p['carrera'] = carrera
     p['año_ingreso'] = ano_ingreso
     InsertDatos(p, 1)
-    continuar = None
-    while continuar == None:
+    continuar = False
+    while continuar == False:
         continuar = input('1.-Continuar ingresando estudiantes\n'
                           '2.-salir\n')
         if continuar == 'a':
@@ -115,39 +115,39 @@ def ing_est():
         if continuar == 'b':
             print('Menu')
         else:
-            continuar = None
+            continuar = False
 
 
 def ing_curso():
-    curso = None
-    codigo_curso = None
-    rut = None
-    nota = None
+    curso = False
+    codigo_curso = False
+    rut = False
+    nota = False
     p = {}
-    while curso == None:
+    while curso == False:
         try:
             curso = input('Ingresa el nombre del curso\n').lower()
             if curso == '':
                 print('Porfavor ingrese un nombre')
-                curso = None
+                curso = False
         except:
             print('Error ingrese el nombre denuevo')
-            curso = None
-    while codigo_curso == None:
+            curso = False
+    while codigo_curso == False:
         try:
             codigo_curso = input('Ingrese el codigo del curso\n').lower()
             if codigo_curso == '':
                 print('Porfavor ingrese el codigo del curso')
-                codigo_curso = None
+                codigo_curso = False
         except:
             print('Porfavor ingrese el codigo denuevo')
-            codigo_curso = None
-    while rut == None:
+            codigo_curso = False
+    while rut == False:
         try:
             rut = input('Ingresar rut del estudiante\n')
             if rut == '':
                 print('por favor ingrese un rut')
-                rut = None
+                rut = False
             else:
                 respuesta = verificar_rut(rut)
                 if respuesta == False:
@@ -155,16 +155,16 @@ def ing_curso():
                     rut = None
         except:
             print('Porfavor ingrese un rut valido')
-            rut = None
-    while nota == None:
+            rut = False
+    while nota == False:
         try:
             nota = int(input("Ingrese la nota final del estudiante\n"))
             if nota == '':
                 print('Por favor ingrese una nota')
-                nota = None
+                nota = False
         except:
             print('error Por favor ingrese la nota denuevo')
-            nota = None
+            nota = False
     if len(curso) > 0:
         p['curso'] = curso
     if len(str(codigo_curso)) > 0:
@@ -174,8 +174,8 @@ def ing_curso():
     if len(str(nota)):
         p['nota'] = nota
     InsertDatos(p, 2)
-    continuar = None
-    while continuar == None:
+    continuar = False
+    while continuar == False:
         continuar = input('1.-Continuar ingresando estudiantes\n'
                           '2.-salir\n')
         if continuar == 'a':
@@ -183,16 +183,108 @@ def ing_curso():
         if continuar == 'b':
             print('Menu')
         else:
-            continuar = None
+            continuar = False
 
 
 def mostrar_datos():
-    seleccion = int(input('Mostrar Datos\n'
-                          '1.-datos estudiantes\n'
-                          '2.-datos cursos\n'))
+    seleccion = False
+    seleccion_2 =False
+    ano_ingreso = False
+    codigo_curso = False
+    nota = False
+    while seleccion == False:
+        try:
+            seleccion = int(input('Mostrar Datos\n'
+                                  '1.-datos estudiantes\n'
+                                  '2.-datos cursos\n'))
+            if seleccion == '':
+                print('Por favor eliga una opcion')
+                seleccion = False
+
+
+            if seleccion == 1:
+                while seleccion_2 == False:
+                    try:
+                        seleccion_2 = int(input('1.-Mostrar Todos\n'
+                                                '2.-filtrar por carrera\n'
+                                                '3.-filtrar por año de ingreso\n'))
+                        if seleccion_2 == '':
+                            print('Por favor eliga una opcion')
+                        if seleccion_2 == 1:
+                            MostrarDatos(1)
+                        if seleccion_2 == 2:
+                            carrera = input('Ingresa la Carrera\n')
+                            search = {'carrera': carrera}
+                            Filtrar(search,seleccion)
+                        if seleccion_2 == 3:
+                            while ano_ingreso == False:
+                                try:
+                                    ano_ingreso = int(input('Ingrese el año de Ingreso\n'))
+                                    search = {'año_ingreso':ano_ingreso}
+                                    Filtrar(search,seleccion)
+
+                                    if len(str(ano_ingreso)) > 0 and len(str(ano_ingreso)) < 4:
+                                        print('Error por favor ingrese un año')
+                                        ano_ingreso = False
+
+                                except:
+                                    print('Error por favor ingrese un año')
+                                    ano_ingreso = False
+
+                    except:
+                        print('Por favor eliga una opcion')
+                        seleccion_2 = False
+
+            elif seleccion == 2:
+                while seleccion_2 == False:
+                    try:
+                        seleccion_2 = int(input('1.-Mostrar todos\n'
+                                                '2.-Filtrar por codigo\n'
+                                                '3.-Filtrar por nota\n'))
+                        if seleccion_2 == '':
+                            print('Error ingrese una opcion')
+
+                        if seleccion_2 == 1:
+                            MostrarDatos(2)
+                        elif seleccion_2 == 2:
+                            while codigo_curso == False:
+                                try:
+                                    codigo_curso = input('Ingrese el codigo del curso\n').lower()
+                                    if codigo_curso == '':
+                                        print('Porfavor ingrese el codigo del curso')
+                                        codigo_curso = False
+                                    else:
+
+                                        search = {'codigo_curso': codigo_curso}
+                                        Filtrar(search, seleccion)
+
+                                except:
+                                    print('Porfavor ingrese el codigo denuevo')
+                                    codigo_curso = False
+                        elif seleccion_2 == 3:
+                            while nota == False:
+                                try:
+                                    nota = int(input("Ingrese la nota final del estudiante\n"))
+                                    if nota == '':
+                                        print('Por favor ingrese una nota')
+                                        nota = False
+                                    else:
+                                        search = {'nota': nota}
+                                        Filtrar(search, seleccion)
+                                except:
+                                    print('error Por favor ingrese la nota denuevo')
+                                    nota = False
+
+
+                    except:
+                        print('Error ingrese una opcion')
+                        seleccion_2 = False
+                MostrarDatos(2)
+            else:
+                print('Error ingrese una opcion')
+                seleccion = False
+        except:
+            print('Error ingrese una opcion')
+            seleccion = False
     return seleccion
-'''
-def Muestra_datos_rut():
-    rut = input('Ingresa rut\n')
-    search = {'rut':rut}
-    FilterRut(search)'''
+
