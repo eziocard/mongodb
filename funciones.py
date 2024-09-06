@@ -8,6 +8,7 @@ from models import *
 
 def menu_main():
     opcion =0
+    print('Menu Principal')
     try:
         while opcion < 1 or opcion > 2:
             opcion = int(input('1.-Ingresar\n'
@@ -20,6 +21,7 @@ def menu_main():
     return opcion
 def menu_ingresar():
     seleccion = 0
+    print('Menu Ingresar')
     try:
          while seleccion < 1 or seleccion > 2:
             seleccion = int(input('1.-Estudiante\n'
@@ -47,7 +49,7 @@ def ing_est():
     rut = False
     carrera = False
     ano_ingreso = False
-
+    continuar = False
     while nombre == False:
            try:
                nombre = input('Ingresa el nombre\n').lower()
@@ -106,16 +108,9 @@ def ing_est():
     p['carrera'] = carrera
     p['año_ingreso'] = ano_ingreso
     InsertDatos(p, 1)
-    continuar = False
-    while continuar == False:
-        continuar = input('1.-Continuar ingresando estudiantes\n'
-                          '2.-salir\n')
-        if continuar == 'a':
-            ing_curso()
-        if continuar == 'b':
-            print('Menu')
-        else:
-            continuar = False
+    print('Dato ingresado con exito')
+
+
 
 
 def ing_curso():
@@ -174,16 +169,7 @@ def ing_curso():
     if len(str(nota)):
         p['nota'] = nota
     InsertDatos(p, 2)
-    continuar = False
-    while continuar == False:
-        continuar = input('1.-Continuar ingresando estudiantes\n'
-                          '2.-salir\n')
-        if continuar == 'a':
-            ing_curso()
-        if continuar == 'b':
-            print('Menu')
-        else:
-            continuar = False
+    print('Dato ingresado con exito')
 
 
 def mostrar_datos():
@@ -194,9 +180,9 @@ def mostrar_datos():
     nota = False
     while seleccion == False:
         try:
-            seleccion = int(input('Mostrar Datos\n'
-                                  '1.-datos estudiantes\n'
-                                  '2.-datos cursos\n'))
+            seleccion = int(input('Menu Mostrar Datos\n'
+                                  '1.-Datos estudiantes\n'
+                                  '2.-Datos cursos\n'))
             if seleccion == '':
                 print('Por favor eliga una opcion')
                 seleccion = False
@@ -204,6 +190,7 @@ def mostrar_datos():
 
             if seleccion == 1:
                 while seleccion_2 == False:
+                    print('Menu Mostrar Estudiantes')
                     try:
                         seleccion_2 = int(input('1.-Mostrar Todos\n'
                                                 '2.-filtrar por carrera\n'
@@ -237,13 +224,13 @@ def mostrar_datos():
 
             elif seleccion == 2:
                 while seleccion_2 == False:
+                    print('Menu Mostrar Curso')
                     try:
                         seleccion_2 = int(input('1.-Mostrar todos\n'
                                                 '2.-Filtrar por codigo\n'
                                                 '3.-Filtrar por nota\n'))
                         if seleccion_2 == '':
                             print('Error ingrese una opcion')
-
                         if seleccion_2 == 1:
                             MostrarDatos(2)
                         elif seleccion_2 == 2:
@@ -279,7 +266,7 @@ def mostrar_datos():
                     except:
                         print('Error ingrese una opcion')
                         seleccion_2 = False
-                MostrarDatos(2)
+
             else:
                 print('Error ingrese una opcion')
                 seleccion = False
