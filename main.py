@@ -30,5 +30,9 @@ def Main():
 
         if menu == 2:
             seleccion_mostrar = mostrar_datos()
+        if menu == 3:
+            ActualizarDatos()
+        if menu == 4:
+            eliminar_datos()
 
 Main()
