@@ -282,3 +282,12 @@ def ActualizarDatos():
     nuevo_valor = input(f'Ingrese el nuevo valor para {campo}\n')
 
     Actualizar(identificador,seleccion,campo,nuevo_valor)
+
+def eliminar_datos():
+    seleccion = menu_ingresar()
+    if seleccion = 1:
+        identificador = input("Ingresar el Rut del estudiante")
+        eliminar(rut=identificador)
+    elif seleccion = 2:
+        identificador = input("Ingresar el codigo del curso a eliminar")
+        eliminar(codigo_curso=identificador)
