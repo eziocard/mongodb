@@ -97,6 +97,10 @@ def eliminar(rut=None,codigo_curso=None):
         collection = db['Estudiantes']
         criterio = {'rut' : rut}
         resultado = collection.delete_one(criterio)
+        
+        collection = db['Cursos']
+        criterio = {'rut_estudiante' : rut}
+        resultado = collection,delete_many(criterio)
 
         if resultado.deleted_count > 0:
             print(f"Estudiante con RUT {rut} eliminado exitosamente")
