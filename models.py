@@ -20,9 +20,10 @@ def MostrarDatos(seleccion):
         data = list(data)
         df = pd.DataFrame(data)
         pd.set_option('display.max_columns', None)
+        pd.set_option('display.max_rows', None)
         pd.set_option('display.width', None)
         print('TABLA ESTUDIANTE')
-        print(df.head())
+        print(df)
     if seleccion == 2:
         db = client.Universidad
         collection = db['Curso']
@@ -30,9 +31,10 @@ def MostrarDatos(seleccion):
         data = list(data)
         df = pd.DataFrame(data)
         pd.set_option('display.max_columns', None)
+        pd.set_option('display.max_rows', None)
         pd.set_option('display.width', None)
         print('TABLA CURSO')
-        print(df.head())
+        print(df)
 
 
 
@@ -46,6 +48,7 @@ def Filtrar(search,seleccion_2):
         data = list(data)
         df = pd.DataFrame(data)
         pd.set_option('display.max_columns', None)
+        pd.set_option('display.max_rows', None)
         pd.set_option('display.width', None)
         print('TABLA FILTRADA')
         print(df.head())
@@ -57,6 +60,7 @@ def Filtrar(search,seleccion_2):
         data = list(data)
         df = pd.DataFrame(data)
         pd.set_option('display.max_columns', None)
+        pd.set_option('display.max_rows', None)
         pd.set_option('display.width', None)
         print('TABLA FILTRADA')
         print(df.head())
