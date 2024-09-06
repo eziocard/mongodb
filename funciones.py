@@ -10,10 +10,12 @@ def menu_main():
     opcion =0
     print('Menu Principal')
     try:
-        while opcion < 1 or opcion > 2:
+        while opcion < 1 or opcion > 4:
             opcion = int(input('1.-Ingresar\n'
-                               '2.-Buscar\n'))
-            if opcion < 1 or opcion > 2:
+                               '2.-Buscar\n'
+                               '3.-Actualizar\n'
+                               '4.-Eliminar\n'))
+            if opcion < 1 or opcion > 4:
                 print('error ingrese denuevo la eleccion')
     except:
         print('error ingrese denuevo la eleccion')
