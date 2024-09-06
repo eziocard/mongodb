@@ -32,7 +32,10 @@ def Main():
             seleccion_mostrar = mostrar_datos()
         if menu == 3:
             ActualizarDatos()
+            mostrar_datos()
         if menu == 4:
             eliminar_datos()
+            mostrar_datos()
+
 
 Main()
