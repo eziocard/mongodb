@@ -104,7 +104,7 @@ def eliminar(rut=None,codigo_curso=None):
             print(f"RUT: {rut} no encontrado")
     elif codigo_curso:
         collection = db['Cursos']
-        criterio = {'codigo_curso' : codigo_curso}
+        criterio = {'codigo_curso' : codigo_curso, 'rut_estudiante' : rut}
         resultado = collection.delete_one(criterio)
         if resultado.deleted_count > 0:
             print(f"Curso con codigo {codigo_curso} eliminado exitosamente")
