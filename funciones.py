@@ -291,7 +291,7 @@ def ActualizarDatos():
 def eliminar_datos():
     seleccion = menu_ingresar()
     if seleccion == 1:
-        identificador = input("Ingresar el Rut del estudiante\n")
+        identificador = input("Ingresar el Rut del estudiante a eliminar\n")
         eliminar(rut=identificador)
     elif seleccion == 2:
         identificador = input("Ingresar el codigo del curso a eliminar\n")
