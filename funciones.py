@@ -281,9 +281,10 @@ def ActualizarDatos():
     seleccion = menu_ingresar()
     if seleccion == 1:
         identificador = input("Ingresar el Rut del estudiante\n")
+        campo = input('Ingrese el campo que desea actualizar (nombre, edad, rut, carrera, año_ingreso).\n')
     elif seleccion == 2:
-        identificador = input("Ingresar el codigo del curso\n")
-    campo = input('Ingrese el campo que desea actualizar\n')
+        identificador = input("Ingresar el codigo del curso (curso, codigo_curso, rut_estudiante, nota_final)\n")
+        campo = input('Ingrese el campo que desea actualizar\n')
     nuevo_valor = input(f'Ingrese el nuevo valor para {campo}\n')
 
     Actualizar(identificador,seleccion,campo,nuevo_valor)
