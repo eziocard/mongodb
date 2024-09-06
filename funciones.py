@@ -284,7 +284,7 @@ def ActualizarDatos():
         campo = input('Ingrese el campo que desea actualizar (nombre, edad, rut, carrera, año_ingreso).\n')
     elif seleccion == 2:
         identificador = input("Ingresar el codigo del curso \n")
-        campo = input('Ingrese el campo que desea actualizar (curso, codigo_curso, rut_estudiante, nota_final)\n')
+        campo = input('Ingrese el campo que desea actualizar (curso,nota_final)\n')
     nuevo_valor = input(f'Ingrese el nuevo valor para {campo}\n')
 
     Actualizar(identificador,seleccion,campo,nuevo_valor)
@@ -295,5 +295,6 @@ def eliminar_datos():
         identificador = input("Ingresar el Rut del estudiante a eliminar\n")
         eliminar(rut=identificador)
     elif seleccion == 2:
-        identificador = input("Ingresar el codigo del curso a eliminar\n")
-        eliminar(codigo_curso=identificador)
+        identificador_rut = input("Ingresar el Rut del estudiante asociado al curso a eliminar\n")
+        identificador_curso = input("Ingresar el codigo del curso asociado al estudiante a eliminar\n")
+        eliminar(rut=identificador_rut ,codigo_curso=identificador_curso)
