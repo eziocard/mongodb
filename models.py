@@ -75,7 +75,7 @@ def Actualizar(search,seleccion,campo,nuevo_valor):
         collection = db['Estudiantes'] 
         criterio = {'rut':search} #creamos un filtro(criterio) en forma de diccionario para proporcionarlo al comando update_one
     elif seleccion == 2:
-        collection = db['Cursos']
+        collection = db['Curso']
         criterio = {'codigo_curso':search}
 
     #crear el nuevo campo
