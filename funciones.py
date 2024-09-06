@@ -275,3 +275,10 @@ def mostrar_datos():
             seleccion = False
     return seleccion
 
+def ActualizarDatos():
+    seleccion = menu_ingresar()
+    identificador = input('Ingrese el Rut del Estudiante o el codigo del curso para actualizar\n')
+    campo = input('Ingrese el campo que desea actualizar\n')
+    nuevo_valor = input(f'Ingrese el nuevo valor para {campo}\n')
+
+    Actualizar(identificador,seleccion,campo,nuevo_valor)
