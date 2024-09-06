@@ -279,10 +279,10 @@ def mostrar_datos():
 
 def ActualizarDatos():
     seleccion = menu_ingresar()
-    if seleccion = 1:
-        identificador = input("Ingresar el Rut del estudiante")
-    elif seleccion = 2:
-        identificador = input("Ingresar el codigo del curso")
+    if seleccion == 1:
+        identificador = input("Ingresar el Rut del estudiante\n")
+    elif seleccion == 2:
+        identificador = input("Ingresar el codigo del curso\n")
     campo = input('Ingrese el campo que desea actualizar\n')
     nuevo_valor = input(f'Ingrese el nuevo valor para {campo}\n')
 
@@ -290,9 +290,9 @@ def ActualizarDatos():
 
 def eliminar_datos():
     seleccion = menu_ingresar()
-    if seleccion = 1:
-        identificador = input("Ingresar el Rut del estudiante")
+    if seleccion == 1:
+        identificador = input("Ingresar el Rut del estudiante\n")
         eliminar(rut=identificador)
-    elif seleccion = 2:
-        identificador = input("Ingresar el codigo del curso a eliminar")
+    elif seleccion == 2:
+        identificador = input("Ingresar el codigo del curso a eliminar\n")
         eliminar(codigo_curso=identificador)
