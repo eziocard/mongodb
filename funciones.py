@@ -279,15 +279,82 @@ def mostrar_datos():
 
 def ActualizarDatos():
     seleccion = menu_ingresar()
+    campo = False
+    identificador = False
     if seleccion == 1:
-        identificador = input("Ingresar el Rut del estudiante\n")
-        campo = input('Ingrese el campo que desea actualizar (nombre, edad, rut, carrera, año_ingreso).\n')
-    elif seleccion == 2:
-        identificador = input("Ingresar el codigo del curso \n")
-        campo = input('Ingrese el campo que desea actualizar (curso,nota_final)\n')
-    nuevo_valor = input(f'Ingrese el nuevo valor para {campo}\n')
+        while identificador == False:
+            try:
+                identificador = input('Ingresar rut del estudiante\n')
+                if identificador == '':
+                    print('por favor ingrese un rut')
+                    identificador = False
+                else:
+                    respuesta = verificar_rut(identificador)
+                    if respuesta == False:
+                        print('Porfavor ingrese un rut valido')
+                        identificador = False
+                    else:
+                        search = {'rut': identificador}
+                        verificar_2 = Buscar_estudiante(search)
+                        if verificar_2 == True:
+                            break
+                        if verificar_2 == False:
+                            print('el estudiante no esta ingresado en la base de datos intente denuevo')
+                            identificador = False
+            except:
+                print('Porfavor ingrese un rut valido')
+                identificador = False
 
-    Actualizar(identificador,seleccion,campo,nuevo_valor)
+        while campo == False:
+            campo = int(input('Ingrese el campo que desea actualizar:\n'
+                          ' 1.-nombre\n'
+                          '2.- edad\n'
+                          '3.- rut\n'
+                          '4.-carrera\n'
+                          '5.-año_ingreso\n'))
+            if campo == 1:
+                campo = 'nombre'
+            elif campo == 2:
+                campo = 'edad'
+            elif campo == 3:
+                campo = 'rut'
+            elif campo == 4:
+                campo = 'carrera'
+            elif campo == 5:
+                campo = 'año_ingreso'
+            else:
+                print('Ingrese una opcion')
+                campo = False
+        nuevo_valor = input(f'Ingrese el nuevo valor para {campo}\n')
+        Actualizar(identificador, seleccion, campo, nuevo_valor)
+    elif seleccion == 2:
+        identificador = False
+        while identificador == False:
+            identificador = input("Ingresar el codigo del curso \n")
+            search = {'codigo_curso': identificador}
+            verificar = Buscar_curso(search)
+            if verificar == False:
+                print('el curso no fue encontrado por favor ingresar nuevamente')
+                identificador = False
+            else:
+                while campo == False:
+                    campo = input('Ingrese el campo que desea actualizar: \n'
+                                  '1.-nombre curso\n'
+                                  '2.-nota_final\n')
+                    if int(campo) == 1:
+                        campo = 'curso'
+                    elif int(campo) == 2:
+                        campo = 'nota_final'
+                    elif int(campo) < 1 or campo > 2:
+                            print('Ingrese una opcion')
+                            campo = False
+                    elif campo == '':
+                        print('Ingrese una opcion')
+                        campo = False
+        nuevo_valor = input(f'Ingrese el nuevo valor para {campo}\n')
+        Actualizar(identificador, seleccion, campo, nuevo_valor)
+        menu_main()
+
 
 def eliminar_datos():
     seleccion = menu_ingresar()

@@ -1,5 +1,5 @@
 ## este archivo contiene toda la lógica de conexión a la base de datos
-from IPython.core.display_functions import display
+
 
 from conexion import *
 import pandas as pd
@@ -39,7 +39,27 @@ def MostrarDatos(seleccion):
 
 
 ## función para filtrar persona por rut
+def Buscar_estudiante(search):
+    respuesta = False
+    db = client.Universidad
+    collection = db['Estudiantes']
+    data = collection.find_one(search)
+    if data:
+        respuesta = True
+    else:
+        respuesta = False
+    return respuesta
 
+def Buscar_curso(search):
+    respuesta = False
+    db = client.Universidad
+    collection = db['Curso']
+    data = collection.find_one(search)
+    if data:
+        respuesta = True
+    else:
+        respuesta = False
+    return respuesta
 def Filtrar(search,seleccion_2):
     if seleccion_2 == 1:
         db = client.Universidad
@@ -68,28 +88,18 @@ def Filtrar(search,seleccion_2):
 ## funcion para actualizar registros
 
 def Actualizar(search,seleccion,campo,nuevo_valor):
-    #conexion a dbs
-    db = client.Universidad
-    #seleccion para estudiantes
     if seleccion == 1:
-        collection = db['Estudiantes'] 
-        criterio = {'rut':search} #creamos un filtro(criterio) en forma de diccionario para proporcionarlo al comando update_one
-    elif seleccion == 2:
+        db = client.Universidad
+        collection = db['Estudiantes']
+        criterio = {'rut': search}
+        actualizacion = {'$set': {campo: nuevo_valor}}
+        resultado = collection.update_one(criterio, actualizacion)
+    if seleccion == 2:
+        db = client.Universidad
         collection = db['Curso']
-        criterio = {'codigo_curso':search}
-
-    #crear el nuevo campo
-    actualizacion = {'$set':{campo : nuevo_valor}}
-    #realizar la actualizacion
-    resultado = collection.update_one(criterio,actualizacion)
-    #comprobar actualizacion
-    if resultado.update_count > 0:
-        print(f"Registro perteneciente a {search} actualizado exitosamente")
-    else:
-        print(f"No se encotro un registro con {search}")
-
-##funcion para eliminar
-
+        criterio = {'codigo_curso': search}
+        actualizacion = {'$set': {campo: nuevo_valor}}
+        resultado = collection.update_one(criterio, actualizacion)
 def eliminar(rut=None,codigo_curso=None):
     #conexion a dbs
     db = client.Universidad
